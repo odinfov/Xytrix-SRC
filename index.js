@@ -227,10 +227,10 @@ client.on('interactionCreate', async interaction => {
 
 const openai = new OpenAI({
     baseURL: "https://openrouter.ai/api/v1",
-    apiKey: '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',
+    apiKey: process.env.OPENAI_API_KEY || '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',
 });
 
-const WEBHOOK_URL = "https://discord.com/api/webhooks/1423462142929014875/wJojYzX7TFl9W6pqKmza5Yo5T2kY6P_nRbGbPC6T6UzEca7q7p040qA62MK0unwW9FDp";
+const WEBHOOK_URL = process.env.WEBHOOK_URL || "https://discord.com/api/webhooks/1423462142929014875/wJojYzX7TFl9W6pqKmza5Yo5T2kY6P_nRbGbPC6T6UzEca7q7p040qA62MK0unwW9FDp";
 const userCooldowns = new Map();
 const MAX_MESSAGE_LENGTH = 1500;
 

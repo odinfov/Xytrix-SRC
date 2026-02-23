@@ -21,10 +21,14 @@ npm install
 ```
 
 ### 3. Configuration
-Open `config.json` and fill in your bot details:
-- `TOKEN`: Your Discord Bot Token.
-- `MONGO_DB`: Your MongoDB connection URI.
-- `invite`: Your bot's invite link.
+1.  **Environment Variables**: Create a `.env` file in the root directory (you can use `.env.example` as a template) and add your keys:
+    ```env
+    TOKEN=your_token
+    MONGO_DB=your_mongodb_uri
+    OPENAI_API_KEY=your_openrouter_key
+    WEBHOOK_URL=your_webhook_url
+    ```
+2.  **`config.json`**: Update any other necessary settings in `config.json`.
 
 ### 4. Starting the Bot
 Run the following command to start the bot:
