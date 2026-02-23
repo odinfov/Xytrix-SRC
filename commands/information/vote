@@ -1,0 +1,24 @@
+const { MessageEmbed, MessageActionRow, MessageButton } = require('discord.js');
+
+module.exports = {
+    name: 'vote',
+    category: 'info',
+    aliases: [],
+    description: `Provides Url to vote for the bot.`,
+    premium: false,
+
+    run: async (client, message, args) => {
+        const embed = new MessageEmbed()
+            .setColor(client.color)
+            .setDescription('<:botlist:1348037996179357776> | [Click here to vote me](https://discordbotlist.com/bots/Xytrix).');
+
+        const row = new MessageActionRow().addComponents(
+            new MessageButton()
+                .setLabel('Vote')
+                .setStyle('LINK')
+                .setURL('https://discordbotlist.com/bots/Xytrix')
+        );
+
+        return message.channel.send({ embeds: [embed], components: [row] });
+    }
+};

@@ -1,0 +1,82 @@
+const {
+    Message,
+    Client,
+    MessageEmbed,
+    MessageActionRow,
+    MessageButton,
+    MessageSelectMenu
+} = require('discord.js');
+const config = require('../../config.json')
+module.exports = {
+    name: 'hideall',
+    category: 'mod',
+    description: `Hide's all the channels of the server`,
+    premium: true,
+
+    run: async (client, message, args) => {
+        let isSpecialMember = config.boss.includes(message.author.id);
+        if (!isSpecialMember && !message.member.permissions.has('MANAGE_CHANNELS')) {
+            let error = new MessageEmbed()
+                .setColor(client.color)
+                .setDescription(
+                    `You must have \`Manage Channels\` permission to use this command.`
+                );
+            return message.channel.send({ embeds: [error] });
+        }
+        if (!isSpecialMember && client.util.hasHigher(message.member) == false) {
+            let error = new MessageEmbed()
+                .setColor(client.color)
+                .setDescription(
+                    `Your highest role must be higher than my highest role to use this command.`
+                );
+            return message.channel.send({ embeds: [error] });
+        }
+
+        let hided = 0;
+        const channel =
+            message.mentions.channels.first() ||
+            message.guild.channels.cache.get(args[0]) ||
+            message.channel;
+
+        try {
+            for (const channel of message.guild.channels.cache.filter((c) => c.name).values()) {
+                if (channel.manageable) {
+                    try {
+                        await channel.permissionOverwrites.edit(message.guild.id, {
+                            VIEW_CHANNEL: false,
+                            reason: `HIDEALL BY ${message.author.tag} (${message.author.id})`
+                        });
+                        hided++;
+                    } catch (error) {
+                        if (error.code === 429) {
+                            await client.util.handleRateLimit();
+                        } else {
+                            throw error;
+                        }
+                    }
+                }
+            }
+
+            message.channel.send({
+                embeds: [
+                    new MessageEmbed()
+                        .setColor(client.color)
+                        .setDescription(
+                            `${client.emoji.tick} Successfully **hidded** ${hided} channels from this server.`
+                        )
+                ]
+            });
+        } catch (error) {
+            if (error.code === 429) {
+                await client.util.handleRateLimit();
+            }
+            return message.channel.send({
+                embeds: [
+                    new MessageEmbed()
+                        .setColor(client.color)
+                        .setDescription('An error occurred while hiding channels.')
+                ]
+            });
+        }
+    }
+};
