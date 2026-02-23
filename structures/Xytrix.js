@@ -15,7 +15,7 @@ module.exports = class Xytrix extends Client {
             shards: 'auto',
             disableEveryone: true,
             allowedMentions: {
-                parse: ['users'], 
+                parse: ['users'],
             }
         });
 
@@ -31,7 +31,7 @@ module.exports = class Xytrix extends Client {
         this.util = new Utils(this);
         this.Sweeper = new Sweepers(this);
         this.color = `0x000000`;
-        this.support = `https://discord.gg/coredev`;
+        this.support = `https://discord.gg/3xjw8snjnB`;
         this.cooldowns = new Collection();
         this.snek = require('axios');
         this.ratelimit = new WebhookClient({
@@ -40,7 +40,7 @@ module.exports = class Xytrix extends Client {
         this.error = new WebhookClient({
             url: 'https://discord.com/api/webhooks/1435684079461990400/qpbbyfMthegP35qzirieycS7bR20_n0wlHgKuS0-Bdd62YQ5Js2mGqy8-jFu7ds0GeYB'
         });
-        
+
         this.errorHandling();
         this.rateLimitHandling();
     }
@@ -48,7 +48,7 @@ module.exports = class Xytrix extends Client {
     // shardConfig() {
     //     const totalShards = this.shard?.count ?? 1;
     //     this.totalClusters = totalShards * 5;
-        
+
     //     this.clusters = Array.from({ length: totalShards }, (_, shardIndex) => ({
     //         id: shardIndex,
     //         clusters: Array.from({ length: 5 }, (_, clusterIndex) => {
@@ -68,12 +68,12 @@ module.exports = class Xytrix extends Client {
     //                 cluster.clusters[clusterIndex].servers.push(guild.id);
     //             }
     //         });
-    
+
     //         this.logger.log(`Total Shards: ${totalShards}, Total Clusters: ${this.totalClusters}`, 'shard');
     //         this.logger.log(`Cluster configuration: ${JSON.stringify(this.clusters, null, 2)}`, 'shard');
     //     });
     // }
-    
+
 
     errorHandling() {
         this.on('error', (error) => {
@@ -168,21 +168,21 @@ module.exports = class Xytrix extends Client {
 
     async loadMain() {
         const commandFiles = [];
-    
+
         const commandDirectories = fs.readdirSync(`${process.cwd()}/commands`);
-    
+
         for (const directory of commandDirectories) {
             const files = fs
                 .readdirSync(`${process.cwd()}/commands/${directory}`)
                 .filter((file) => file.endsWith('.js'));
-    
+
             for (const file of files) {
                 commandFiles.push(
                     `${process.cwd()}/commands/${directory}/${file}`
                 );
             }
         }
-    
+
         commandFiles.map((value) => {
             const file = require(value);
             const splitted = value.split('/');
@@ -192,24 +192,24 @@ module.exports = class Xytrix extends Client {
                 this.commands.set(file.name, properties);
             }
         });
-    
+
         const getCommandCounts = () => {
             let actualCommands = 0;
             let totalCommands = 0;
-            
+
             this.commands.forEach(cmd => {
                 actualCommands += 1;
-                totalCommands += 1; 
+                totalCommands += 1;
                 if (cmd.subcommand && Array.isArray(cmd.subcommand)) {
                     totalCommands += cmd.subcommand.length;
                 }
             });
-    
+
             return { actualCommands, totalCommands };
         };
-    
+
         const { actualCommands, totalCommands } = getCommandCounts();
         this.logger.log(`Total Commands ${actualCommands} Commands.`, 'cmd');
         this.logger.log(`Updated ${totalCommands} Commands.`, 'cmd');
-    }    
+    }
 }

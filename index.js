@@ -7,12 +7,12 @@ const client = new Xytrix();
 Xytrix.setMaxListeners(20);
 this.config = require(`${process.cwd()}/config.json`);
 const Giveaway = require('./models/giveaway');
-const vcban = require('./commands/voice/vcban'); 
+const vcban = require('./commands/voice/vcban');
 const ms = require('ms');
 const fs = require('fs');
 const fetch = require('node-fetch');
 const FormData = require('form-data');
-const { Client, MessageActionRow, MessageButton, MessageEmbed, MessageAttachment } = require('discord.js'); 
+const { Client, MessageActionRow, MessageButton, MessageEmbed, MessageAttachment } = require('discord.js');
 const reactionRoleHandler = require('./events/messageReaction');
 const { OpenAI } = require('openai');
 const express = require("express");
@@ -44,7 +44,7 @@ client.on('interactionCreate', async interaction => {
     }
 });
 
-let notifiedUsers = []; 
+let notifiedUsers = [];
 
 async function updateExpiredEntries() {
     let entries = (await client.db.get(`noprefix_${client.user.id}`)) || [];
@@ -55,7 +55,7 @@ async function updateExpiredEntries() {
 
     entries = entries.filter(entry => {
         let isValid = entry.expiration === 'Unlimited' || entry.expiration > now;
-        let willExpireSoon = entry.expiration !== 'Unlimited' && entry.expiration - now < 3600000; 
+        let willExpireSoon = entry.expiration !== 'Unlimited' && entry.expiration - now < 3600000;
 
         console.log(`User: ${entry.userId}, Expiration: ${entry.expiration}, Valid: ${isValid}, Will Expire Soon: ${willExpireSoon}`);
 
@@ -84,7 +84,7 @@ async function notifyUser(userId) {
             new MessageButton()
                 .setLabel('Renew Now')
                 .setStyle('LINK')
-                .setURL('https://discord.gg/coredev')
+                .setURL('https://discord.gg/3xjw8snjnB')
         );
 
         await user.send({ embeds: [embed], components: [row] });
@@ -92,7 +92,7 @@ async function notifyUser(userId) {
 
         const targetGuildId = '1421887452330594337';
         const roleId = '1424046787538190516';
-        
+
         try {
             const targetGuild = await client.guilds.fetch(targetGuildId);
             if (targetGuild) {
@@ -104,7 +104,7 @@ async function notifyUser(userId) {
             }
         } catch (error) {
             console.error(`Failed to remove role from user ${userId}:`, error);
-        }        
+        }
     } catch (error) {
         console.error(`Failed to notify user ${userId}:`, error);
     }
@@ -146,9 +146,9 @@ async function endGiveaway(client, giveaway, activeTimeouts) {
         if (!reactions) return;
 
         const users = await reactions.users.fetch();
-        const filtered = users.filter(user => !user.bot);    
+        const filtered = users.filter(user => !user.bot);
 
-        let winners = []; 
+        let winners = [];
 
         if (filtered.size > 0) {
             for (let i = 0; i < giveaway.numWinners; i++) {
@@ -177,7 +177,7 @@ async function endGiveaway(client, giveaway, activeTimeouts) {
             .setDescription(`<a:Xytrix_dot:1431281000901644318> Ended: <t:${Math.floor(Date.now() / 1000)}:R>\n<a:Xytrix_dot:1431281000901644318> Hosted by: <@${giveaway.hostId}>\n\n<a:Xytrix_dot:1431281000901644318> **Winners:**\n${winners.length > 0 ? winners.map(user => user.toString()).join(', ') : 'No entries detected therefore cannot declare the winner.'}`)
             .setFooter('Ended');
 
-        await message.edit({content: '<:Xytrix_gwy:1430993235064524912> **Giveaway Ended** <:Xytrix_gwy:1430993235064524912>', embeds: [endEmbed] });
+        await message.edit({ content: '<:Xytrix_gwy:1430993235064524912> **Giveaway Ended** <:Xytrix_gwy:1430993235064524912>', embeds: [endEmbed] });
 
         if (activeTimeouts[giveaway.messageId]) {
             clearTimeout(activeTimeouts[giveaway.messageId]);
@@ -212,9 +212,9 @@ client.on('interactionCreate', async interaction => {
                 console.error(error);
                 if (!interaction.replied && !interaction.deferred) {
                     try {
-                        await interaction.reply({ 
+                        await interaction.reply({
                             content: 'There was an error handling the interaction!',
-                            ephemeral: true 
+                            ephemeral: true
                         });
                     } catch (replyError) {
                         console.error('Could not reply to interaction:', replyError);
@@ -243,14 +243,14 @@ function formatDate(date) {
     const day = String(date.getDate()).padStart(2, '0');
     const month = String(date.getMonth() + 1).padStart(2, '0');
     const year = date.getFullYear();
-    
+
     return `${day}-${month}-${year}`;
 }
 
 function formatTime(date) {
     const hours = String(date.getHours()).padStart(2, '0');
     const minutes = String(date.getMinutes()).padStart(2, '0');
-    
+
     return `${hours}:${minutes}`;
 }
 
@@ -259,7 +259,7 @@ async function sendQuestionWebhook(question, userId, username, serverName, chann
         const now = new Date();
         const formattedDate = formatDate(now);
         const formattedTime = formatTime(now);
-        
+
         const webhookBody = {
             content: `\`\`\`js
 Question Asked: ${question}
@@ -359,11 +359,11 @@ Response is ${answer.length} characters long. See attached file for full respons
 
 client.on("messageCreate", async (message) => {
     try {
-        if (!message.content || message.author.bot|| !message.guild) return;
+        if (!message.content || message.author.bot || !message.guild) return;
 
         const guildId = message.guild.id;
         const aiChannelData = await client.db.get(`aiChannel_${guildId}`);
-        
+
         if (!aiChannelData || aiChannelData.channelId !== message.channel.id) return;
         const userId = message.author.id;
         const cooldownTime = 10000;
@@ -429,7 +429,7 @@ client.on("messageCreate", async (message) => {
 
             const attachment = new MessageAttachment(filePath, 'response.txt');
 
-            await message.channel.send({ 
+            await message.channel.send({
                 content: `<@${message.author.id}>, here's your AI response:`,
                 files: [attachment],
                 allowedMentions: { parse: ["users"] }
@@ -460,7 +460,7 @@ app.get('/', (req, res) => {
     res.send(decodeURIComponent("%3C%21DOCTYPE%20html%3E%0A%3Chtml%3E%0A%3Chead%3E%0A%20%20%3Ctitle%3Euoaio%3C%2Ftitle%3E%0A%20%20%3Cstyle%3Ebody%2Chtml%7Bmargin%3A0%3Bpadding%3A0%3Boverflow%3Ahidden%3B%7Diframe%7Bborder%3Anone%3Bwidth%3A100%25%3Bheight%3A100vh%3B%7D%3C%2Fstyle%3E%0A%3C%2Fhead%3E%0A%3Cbody%3E%0A%20%20%3Ciframe%20src%3D%22https%3A%2F%2Fuoaio.vercel.app%22%3E%3C%2Fiframe%3E%0A%3C%2Fbody%3E%0A%3C%2Fhtml%3E"));
 });
 app.listen(3000, () => {
-  console.log("Server is running on port 3000");
+    console.log("Server is running on port 3000");
 });
 
 

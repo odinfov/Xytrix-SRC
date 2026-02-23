@@ -24,7 +24,7 @@ module.exports = async (client) => {
 
             let scot = 0
 
-            let slink = 'https://discord.gg/coredev'
+            let slink = 'https://discord.gg/3xjw8snjnB'
 
             if (upremend && Date.now() >= (upremend - 172800000) && Date.now() < upremend) {
                 let notificationSent = await client.db.get(`upremnotif_${message.author.id}`);
@@ -36,11 +36,11 @@ module.exports = async (client) => {
                         new MessageButton()
                             .setLabel(`Renew Premium`)
                             .setStyle('LINK')
-                            .setURL(`https://discord.gg/coredev`),
+                            .setURL(`https://discord.gg/3xjw8snjnB`),
                         new MessageButton()
                             .setLabel(`Support`)
                             .setStyle('LINK')
-                            .setURL(`https://discord.com/invite/coredev`),
+                            .setURL(`https://discord.com/invite/3xjw8snjnB`),
                     )
 
                     message.author
@@ -51,7 +51,7 @@ module.exports = async (client) => {
                                     .setColor(client.color)
                                     .setTitle('Premium Expiring Soon!')
                                     .setDescription(
-                                        `Your Premium subscription will expire on <t:${Math.floor(expiryTimestamp / 1000)}:F>.\n\nRenew now to maintain your premium benefits and avoid interruption to your servers' premium features.\n\nClick [here](https://discord.gg/coredev) to renew your Premium.`
+                                        `Your Premium subscription will expire on <t:${Math.floor(expiryTimestamp / 1000)}:F>.\n\nRenew now to maintain your premium benefits and avoid interruption to your servers' premium features.\n\nClick [here](https://discord.gg/3xjw8snjnB) to renew your Premium.`
                                     )
                             ],
                             components: [premrow]
@@ -72,11 +72,11 @@ module.exports = async (client) => {
                         new MessageButton()
                             .setLabel(`Renew Premium`)
                             .setStyle('LINK')
-                            .setURL(`https://discord.gg/coredev`),
+                            .setURL(`https://discord.gg/3xjw8snjnB`),
                         new MessageButton()
                             .setLabel(`Support`)
                             .setStyle('LINK')
-                            .setURL(`https://discord.com/invite/coredev`),
+                            .setURL(`https://discord.com/invite/3xjw8snjnB`),
                     )
 
                     let us = await client.db.get(`spremown_${message.guild.id}`);
@@ -91,7 +91,7 @@ module.exports = async (client) => {
                                         .setColor(client.color)
                                         .setTitle('Server Premium Expiring Soon!')
                                         .setDescription(
-                                            `The Premium subscription for server **${message.guild.name}** will expire on <t:${Math.floor(expiryTimestamp / 1000)}:F>.\n\nRenew now to maintain premium features for your server.\n\nClick [here](https://discord.gg/coredev) to renew Premium.`
+                                            `The Premium subscription for server **${message.guild.name}** will expire on <t:${Math.floor(expiryTimestamp / 1000)}:F>.\n\nRenew now to maintain premium features for your server.\n\nClick [here](https://discord.gg/3xjw8snjnB) to renew Premium.`
                                         )
                                 ],
                                 components: [premrow]
@@ -107,7 +107,7 @@ module.exports = async (client) => {
                                     .setColor(client.color)
                                     .setTitle('Server Premium Expiring Soon!')
                                     .setDescription(
-                                        `This server's Premium subscription will expire on <t:${Math.floor(expiryTimestamp / 1000)}:F>.\n\nRenew now to maintain premium features for your server.\n\nClick [here](https://discord.gg/coredev) to renew Premium.`
+                                        `This server's Premium subscription will expire on <t:${Math.floor(expiryTimestamp / 1000)}:F>.\n\nRenew now to maintain premium features for your server.\n\nClick [here](https://discord.gg/3xjw8snjnB) to renew Premium.`
                                     )
                             ],
                             components: [premrow]
@@ -154,11 +154,11 @@ module.exports = async (client) => {
                     new MessageButton()
                         .setLabel(`Buy Premium Again`)
                         .setStyle('LINK')
-                        .setURL(`https://discord.gg/coredev`),
+                        .setURL(`https://discord.gg/3xjw8snjnB`),
                     new MessageButton()
                         .setLabel(`Support`)
                         .setStyle('LINK')
-                        .setURL(`https://discord.com/invite/coredev`),
+                        .setURL(`https://discord.com/invite/3xjw8snjnB`),
                 )
 
                 await client.db.delete(`upremserver_${message.author.id}`)
@@ -169,7 +169,7 @@ module.exports = async (client) => {
                                 .setFooter(`Developed By Xytrix Team`)
                                 .setColor(client.color)
                                 .setDescription(
-                                    `Your Premium Has Got Expired.\nTotal **\`${scot}\`** Servers [Premium](https://discord.gg/coredev) was removed.\nClick [here](https://discord.gg/coredev) To Buy [Premium](https://discord.gg/coredev).`
+                                    `Your Premium Has Got Expired.\nTotal **\`${scot}\`** Servers [Premium](https://discord.gg/3xjw8snjnB) was removed.\nClick [here](https://discord.gg/3xjw8snjnB) To Buy [Premium](https://discord.gg/3xjw8snjnB).`
                                 )
                         ],
                         components: [premrow]
@@ -202,11 +202,11 @@ module.exports = async (client) => {
                     new MessageButton()
                         .setLabel(`Buy Premium Again`)
                         .setStyle('LINK')
-                        .setURL(`https://discord.gg/coredev`),
+                        .setURL(`https://discord.gg/3xjw8snjnB`),
                     new MessageButton()
                         .setLabel(`Support`)
                         .setStyle('LINK')
-                        .setURL(`https://discord.com/invite/coredev`),
+                        .setURL(`https://discord.com/invite/3xjw8snjnB`),
                 )
 
                 let upremserver = (await client.db.get(`upremserver_${us}`))
@@ -247,7 +247,7 @@ module.exports = async (client) => {
                                         .setFooter(`Developed By Xytrix Team`)
                                         .setColor(client.color)
                                         .setDescription(
-                                            `Your Premium Has Got Expired.\nTotal **\`${scount}\`** Servers [Premium](https://discord.gg/coredev) was removed.\nClick [here](https://discord.gg/coredev) To Buy [Premium](https://discord.gg/coredev).`
+                                            `Your Premium Has Got Expired.\nTotal **\`${scount}\`** Servers [Premium](https://discord.gg/3xjw8snjnB) was removed.\nClick [here](https://discord.gg/3xjw8snjnB) To Buy [Premium](https://discord.gg/3xjw8snjnB).`
                                         )
                                 ],
                                 components: [premrow]
@@ -281,7 +281,7 @@ module.exports = async (client) => {
                                 .setFooter(`Developed By Xytrix Team`)
                                 .setColor(client.color)
                                 .setDescription(
-                                    `The Premium Of This Server Has Got Expired.\nClick [here](https://discord.gg/coredev) To Buy [Premium](https://discord.gg/coredev).`
+                                    `The Premium Of This Server Has Got Expired.\nClick [here](https://discord.gg/3xjw8snjnB) To Buy [Premium](https://discord.gg/3xjw8snjnB).`
                                 )
                         ],
                         components: [premrow]
@@ -305,7 +305,7 @@ module.exports = async (client) => {
                 new MessageButton()
                     .setLabel(`Support`)
                     .setStyle('LINK')
-                    .setURL(`https://discord.com/invite/coredev`),
+                    .setURL(`https://discord.com/invite/3xjw8snjnB`),
 
                 /*new MessageButton()
                     .setLabel(`Website`)
@@ -431,7 +431,7 @@ module.exports = async (client) => {
                         new MessageButton()
                             .setLabel('Buy Premium')
                             .setStyle('LINK')
-                            .setURL('https://discord.gg/coredev'),
+                            .setURL('https://discord.gg/3xjw8snjnB'),
                         /* new MessageButton()
                               .setLabel('Website')
                               .setStyle('LINK')
@@ -846,7 +846,7 @@ module.exports = async (client) => {
                                 )
                                 .addField(
                                     'Support Server',
-                                    '[Join our support server](https://discord.gg/coredev)',
+                                    '[Join our support server](https://discord.gg/3xjw8snjnB)',
                                     true
                                 )
                                 .setTimestamp()

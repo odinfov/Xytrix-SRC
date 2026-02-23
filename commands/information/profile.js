@@ -104,7 +104,7 @@ module.exports = {
                 badges += `\n<:Xytrix_Members:1431362300798828797>・**Members**`;
             }
         } catch (err) {
-            badges = badges || '`No Badge Available`\n[Join support to get badages](https://discord.gg/coredev)`';
+            badges = badges || '`No Badge Available`\n[Join support to get badages](https://discord.gg/3xjw8snjnB)`';
         }
 
         const pr = new MessageEmbed()
@@ -115,7 +115,7 @@ module.exports = {
             .setThumbnail(user.displayAvatarURL({ dynamic: true }))
             .setColor(client.color)
             .setTimestamp()
-            .setDescription(`**BADGES** <a:Xytrix_boost:1431296205035540542>\n${badges || '`No Badge Available`\n[Join support to get badages](https://discord.gg/coredev)'}`);
+            .setDescription(`**BADGES** <a:Xytrix_boost:1431296205035540542>\n${badges || '`No Badge Available`\n[Join support to get badages](https://discord.gg/3xjw8snjnB)'}`);
 
         message.channel.send({ embeds: [pr] });
     }

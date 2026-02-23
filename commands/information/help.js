@@ -233,7 +233,7 @@ module.exports = {
             // )
             .addField(
                 'Links',
-                `**[Invite](https://discord.com/api/oauth2/authorize?client_id=${client.user.id}&permissions=8&scope=bot) | [Support](https://discord.gg/coredev) **`,
+                `**[Invite](https://discord.com/api/oauth2/authorize?client_id=${client.user.id}&permissions=8&scope=bot) | [Support](https://discord.gg/3xjw8snjnB) **`,
                 true
             );
 

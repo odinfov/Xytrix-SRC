@@ -93,7 +93,7 @@ Xytrix-SRC/
 ## 🤝 Support
 
 If you encounter any issues or have suggestions, feel free to join our support server:
-[Join Support Server](https://discord.gg/coredev)
+[Join Support Server](https://discord.gg/3xjw8snjnB)
 
 ---
 *Developed with ❤️ by the Xytrix Team*

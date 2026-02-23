@@ -21,14 +21,14 @@ module.exports = {
             new MessageButton()
                 .setLabel('Premium')
                 .setStyle('LINK')
-                .setURL('https://discord.gg/coredev')
+                .setURL('https://discord.gg/3xjw8snjnB')
         )
-        let link = 'https://discord.gg/coredev'
+        let link = 'https://discord.gg/3xjw8snjnB'
         if (!args[0]) {
             embed.setAuthor(
                 `${client.user.username} Premium`,
                 client.user.displayAvatarURL(),
-                'https://discord.gg/coredev'
+                'https://discord.gg/3xjw8snjnB'
             )
             embed.setThumbnail(message.guild.iconURL({ dynamic: true }))
             embed.setDescription(
@@ -104,8 +104,8 @@ module.exports = {
                                 )}:R>)`
                             )
                         ]
-                    })         
-                    await message.guild.me.setNickname('Xytrix Prime')           
+                    })
+                    await message.guild.me.setNickname('Xytrix Prime')
                 }
                 break
 
@@ -221,7 +221,7 @@ module.exports = {
                 embed.setAuthor(
                     `${client.user.username} Premium`,
                     client.user.displayAvatarURL(),
-                    'https://discord.gg/coredev'
+                    'https://discord.gg/3xjw8snjnB'
                 )
                 embed.setThumbnail(message.guild.iconURL({ dynamic: true }))
                 embed.setDescription(
